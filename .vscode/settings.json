@@ -1,0 +1,11 @@
+{
+    "files.associations":
+    {
+        "*.h": "c",
+        "cmath": "c",
+        "random": "c"
+    },
+    
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+    "svg.preview.background": "editor"
+}
