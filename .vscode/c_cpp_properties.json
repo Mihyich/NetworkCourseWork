@@ -5,7 +5,7 @@
             "name": "Linux",
             "includePath":
             [
-                "${workspaceFolder}"
+                "${workspaceFolder}/program/inc"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
@@ -16,7 +16,7 @@
         {
             "name": "Windows",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/program/inc"
             ],
             "defines": [
                 "_WIN32"
