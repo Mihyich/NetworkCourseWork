@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 // Инициализация логгера
-// filename == NULL → лог в stderr
+// filename == NULL -> лог в stderr
 int log_init(const char *filename);
 
 // Завершение работы (закрыть файл, уничтожить мьютекс)

@@ -13,13 +13,13 @@ struct http_request {
     int client_port;
 };
 
-// Парсит начальную строку запроса (например, "GET /index.html HTTP/1.1\r\n")
-// Возвращает 1 при успехе, 0 — ошибка (неподдерживаемый метод, плохой формат)
+// Парсинг начальной строки запроса (например, "GET /index.html HTTP/1.1\r\n")
+// Возврат 1 при успехе, 0 - ошибка (неподдерживаемый метод, плохой формат)
 int http_parse_request_line(const char *line, struct http_request *req);
 
-// Отправляет HTTP-ответ по сокету
-// is_head: если true — не отправлять тело (только заголовки)
-// Возвращает 0 при успехе, -1 — ошибка отправки
+// Отправка HTTP-ответа по сокету
+// is_head: если true - не отправлять тело (только заголовки)
+// Возврат: 0 при успехе, -1 - ошибка отправки
 int http_send_response(int client_fd, const char *docroot, struct http_request *req, int is_head);
 
 #endif // HTTP_H

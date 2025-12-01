@@ -11,7 +11,7 @@
 #include <errno.h>
 #include <signal.h>
 
-// Обработчик SIGPIPE — игнорировать (чтобы не падать при разрыве соединения)
+// Обработчик SIGPIPE - игнорировать (чтобы не падать при разрыве соединения)
 static void sigpipe_handler(int sig) {
     (void)sig;
 }
@@ -21,17 +21,17 @@ int server_run(const char *docroot, int port, int worker_count) {
         return -1;
     }
 
-    // Игнорируем SIGPIPE — send() будет возвращать -1 вместо срабатывания сигнала
+    // Игнорировать SIGPIPE - send() будет возвращать -1 вместо срабатывания сигнала
     signal(SIGPIPE, sigpipe_handler);
 
-    // Создаём сокет
+    // Создание сокета
     int listen_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (listen_fd < 0) {
         perror("socket");
         return -1;
     }
 
-    // SO_REUSEADDR — чтобы быстро перезапускать сервер
+    // SO_REUSEADDR - чтобы быстро перезапускать сервер
     int opt = 1;
     if (setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0) {
         perror("setsockopt");
@@ -59,7 +59,7 @@ int server_run(const char *docroot, int port, int worker_count) {
 
     printf("Server listening on port %d...\n", port);
 
-    // Запускаем worker pool
+    // Запуск worker pool
     if (worker_pool_start(docroot, worker_count) != 0) {
         fprintf(stderr, "Failed to start worker pool\n");
         close(listen_fd);
@@ -78,14 +78,14 @@ int server_run(const char *docroot, int port, int worker_count) {
             break;
         }
 
-        // Получаем IP и порт клиента
+        // Получить IP и порт клиента
         char client_ip[INET6_ADDRSTRLEN];
         inet_ntop(AF_INET, &client_addr.sin_addr, client_ip, sizeof(client_ip));
         int client_port = ntohs(client_addr.sin_port);
 
-        // Передаём соединение worker'у (round-robin или очередь — реализуем в worker.c)
+        // Передать соединение worker'у
         if (worker_assign_connection(client_fd, client_ip, client_port) != 0) {
-            // Если не удалось — закрываем
+            // Если не удалось - закрыть
             close(client_fd);
         }
     }

@@ -36,11 +36,11 @@ int http_send_response(int client_fd, const char *docroot, struct http_request *
 
     // 1. Нормализация пути
     char user_path[2048];
-    // Убираем query-строку
+    // Убирать query-строку
     char *q = strchr(req->path, '?');
     if (q) *q = '\0';
 
-    // Копируем путь для безопасности
+    // Копирование пути для безопасности
     if (snprintf(user_path, sizeof(user_path), "%s", req->path) >= (int)sizeof(user_path)) {
         send_simple_response(client_fd, 400, "Bad Request");
         log_request(req->client_ip, req->client_port, 
@@ -51,11 +51,11 @@ int http_send_response(int client_fd, const char *docroot, struct http_request *
 
     // Обработка корня
     if (user_path[0] == '\0' || strcmp(user_path, "/") == 0) {
-        strcpy(user_path, "/index.html");
+        strcpy(user_path, "/index_1.html");
     } else if (user_path[strlen(user_path)-1] == '/') {
-        // Каталог — добавляем index.html
+        // Добавляеся index_1.html
         if (strlen(user_path) + 11 < sizeof(user_path)) {
-            strcat(user_path, "index.html");
+            strcat(user_path, "index_1.html");
         } else {
             send_simple_response(client_fd, 400, "Bad Request");
             return -1;
@@ -97,7 +97,7 @@ int http_send_response(int client_fd, const char *docroot, struct http_request *
         return -1;
     }
 
-    // 4. Открываем файл
+    // 4. Открыть файл
     int file_fd = open(resolved_path, O_RDONLY);
     if (file_fd < 0) {
         send_simple_response(client_fd, 404, "Not Found");
@@ -107,7 +107,7 @@ int http_send_response(int client_fd, const char *docroot, struct http_request *
         return -1;
     }
 
-    // 5. Формируем заголовки
+    // 5. Формирование заголовков
     const char *content_type = get_content_type(resolved_path);
     char header[1024];
     int header_len = snprintf(header, sizeof(header),
@@ -119,7 +119,7 @@ int http_send_response(int client_fd, const char *docroot, struct http_request *
         content_type, file_size
     );
 
-    // 6. Отправляем заголовок
+    // 6. Отправка заголовока
     if (send(client_fd, header, header_len, MSG_NOSIGNAL) < 0) {
         close(file_fd);
         return -1;
@@ -127,7 +127,7 @@ int http_send_response(int client_fd, const char *docroot, struct http_request *
 
     size_t total_sent = 0;
     if (!is_head) {
-        // 7. Отправляем тело через sendfile (zero-copy)
+        // 7. Отправка тела через sendfile (zero-copy)
         while ((long long)total_sent < file_size) {
             ssize_t sent = sendfile(client_fd, file_fd, NULL, 
                 (size_t)(file_size - total_sent));
@@ -142,7 +142,7 @@ int http_send_response(int client_fd, const char *docroot, struct http_request *
     }
     close(file_fd);
 
-    // 8. Логируем
+    // 8. Лог
     log_request(req->client_ip, req->client_port,
         req->method == HTTP_METHOD_GET ? "GET" : "HEAD",
         req->path, 200, is_head ? 0 : total_sent);
@@ -158,7 +158,7 @@ int http_parse_request_line(const char *line, struct http_request *req) {
     int n = sscanf(line, "%15s %2047s %15s", method, path, protocol);
     if (n != 3) return 0;
 
-    // Поддерживаем только HTTP/1.0 и HTTP/1.1
+    // Поддерживается только HTTP/1.0 и HTTP/1.1
     if (strcmp(protocol, "HTTP/1.0") != 0 && strcmp(protocol, "HTTP/1.1") != 0) {
         return 0;
     }
@@ -171,7 +171,7 @@ int http_parse_request_line(const char *line, struct http_request *req) {
         return 0; // неподдерживаемый метод
     }
 
-    // Ограничиваем путь
+    // Ограничить путь
     if (strlen(path) >= sizeof(req->path)) return 0;
     strcpy(req->path, path);
 

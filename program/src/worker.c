@@ -47,14 +47,14 @@ static int worker_count = 0;
 static volatile int workers_shutdown = 0;
 static int next_worker = 0; // для round-robin
 
-// Устанавливает сокет в неблокирующий режим
+// Устанавливить сокет в неблокирующий режим
 static int set_nonblocking(int fd) {
     int flags = fcntl(fd, F_GETFL, 0);
     if (flags == -1) return -1;
     return fcntl(fd, F_SETFL, flags | O_NONBLOCK);
 }
 
-// Удаляет соединение из worker'а
+// Удалить соединение из worker'а
 static void remove_connection(struct worker *w, int idx) {
     close(w->conns[idx].fd);
     if (idx != w->conn_count - 1) {
@@ -68,12 +68,12 @@ static void handle_request(struct worker *w, int idx) {
     struct connection *conn = &w->conns[idx];
     if (http_send_response(conn->fd, w->docroot, &conn->req, 
                           conn->req.method == HTTP_METHOD_HEAD) < 0) {
-        // Ошибка отправки — закрываем
+        // Ошибка отправки — закрытие
         remove_connection(w, idx);
         return;
     }
     conn->response_sent = 1;
-    // Так как Connection: close, закрываем после отправки
+    // Так как Connection: close, закрыть после отправки
     remove_connection(w, idx);
 }
 
@@ -84,7 +84,7 @@ static void* worker_thread(void *arg) {
     int timeout_ms = 200; // таймаут для poll()
 
     while (!w->shutdown) {
-        // 1. Проверяем, есть ли новые соединения (в критической секции)
+        // 1. Проверка: есть ли новые соединения (в критической секции)
         pthread_mutex_lock(&w->mutex);
         if (w->new_conn_ready) {
             if (w->conn_count < MAX_CONNECTIONS_PER_WORKER) {
@@ -98,30 +98,30 @@ static void* worker_thread(void *arg) {
                 w->conns[idx].response_sent = 0;
                 set_nonblocking(w->new_conn_fd);
             } else {
-                close(w->new_conn_fd); // отклоняем — перегрузка
+                close(w->new_conn_fd); // отклонение — перегрузка
             }
             w->new_conn_ready = 0;
             pthread_cond_signal(&w->cond);
         }
         pthread_mutex_unlock(&w->mutex);
 
-        // 2. Заполняем pfds
+        // 2. Заполнение pfds
         int nfds = 0;
         for (int i = 0; i < w->conn_count; i++) {
             pfds[nfds].fd = w->conns[i].fd;
             pfds[nfds].events = POLLIN;
             if (!w->conns[i].headers_parsed || !w->conns[i].response_sent) {
-                // Пока не отправили ответ — ждём записи (на случай sendfile задержки)
+                // Ожидание записи по не отрпавлен ответ (на случай sendfile задержки)
                 pfds[nfds].events |= POLLOUT;
             }
             nfds++;
         }
 
-        // 3. Выполняем poll
+        // 3. poll
         int ready = poll(pfds, nfds, timeout_ms);
         if (ready <= 0) continue;
 
-        // 4. Обрабатываем события
+        // 4. Обрабатка событий
         for (int i = 0; i < nfds; i++) {
             int idx = i;
             if (pfds[i].revents & (POLLERR | POLLHUP | POLLNVAL)) {
@@ -141,15 +141,15 @@ static void* worker_thread(void *arg) {
                         conn->request_len += n;
                         conn->request_buf[conn->request_len] = '\0';
 
-                        // Ищем конец заголовка (\r\n\r\n)
+                        // поиск конца заголовка (\r\n\r\n)
                         char *end = strstr(conn->request_buf, "\r\n\r\n");
                         if (end) {
-                            *end = '\0'; // обрезаем
+                            *end = '\0'; // обрезание
                             if (http_parse_request_line(conn->request_buf, &conn->req)) {
                                 strcpy(conn->req.client_ip, conn->ip);
                                 conn->req.client_port = conn->port;
                                 conn->headers_parsed = 1;
-                                // Отправим ответ в следующем POLLOUT
+                                // Отправка ответа будет в следующем pullout
                             } else {
                                 // Неподдерживаемый метод или плохой запрос
                                 send(conn->fd, "HTTP/1.1 405 Method Not Allowed\r\nConnection: close\r\n\r\n", 63, MSG_NOSIGNAL);
@@ -176,7 +176,7 @@ static void* worker_thread(void *arg) {
         }
     }
 
-    // Закрываем все соединения при завершении
+    // Закрыть все соединения при завершении
     for (int i = 0; i < w->conn_count; i++) {
         close(w->conns[i].fd);
     }
@@ -240,7 +240,7 @@ int worker_assign_connection(int client_fd, const char *ip, int port) {
 
     pthread_mutex_lock(&w->mutex);
     while (w->new_conn_ready) {
-        // Ждём, если предыдущее соединение ещё не забрали
+        // Ожидать, если предыдущее соединение ещё не захватили
         pthread_cond_wait(&w->cond, &w->mutex);
     }
 

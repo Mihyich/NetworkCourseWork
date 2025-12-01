@@ -40,7 +40,6 @@ void log_close(void) {
     }
     log_inited = 0;
     pthread_mutex_unlock(&log_mutex);
-    // Опционально: pthread_mutex_destroy(&log_mutex);
 }
 
 void log_request(
@@ -71,6 +70,6 @@ void log_request(
             status_code,
             bytes_sent
     );
-    fflush(log_file); // гарантируем запись (важно при краше)
+    fflush(log_file);
     pthread_mutex_unlock(&log_mutex);
 }

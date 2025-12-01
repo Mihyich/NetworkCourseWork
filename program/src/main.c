@@ -8,7 +8,6 @@ int main(int argc, char *argv[]) {
     int port = 8080;
     int worker_threads = 8;
 
-    // Простая обработка аргументов (опционально)
     if (argc >= 2) {
         docroot = argv[1];
     }

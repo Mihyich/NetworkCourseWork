@@ -15,36 +15,36 @@
 int is_path_safe(const char *root_dir, const char *user_path, char *resolved) {
     if (!root_dir || !user_path || !resolved) return 0;
 
-    // Разрешаем только относительные пути без ".." в начале
+    // Разрешить только относительные пути без ".." в начале
     if (user_path[0] == '/') {
-        // Убираем начальный слэш для относительного разрешения
+        // Убирать начальный слэш для относительного разрешения
         user_path++;
     }
 
-    // Собираем полный путь: root_dir + "/" + user_path
+    // Сборка полного пути: root_dir + "/" + user_path
     char full_path[PATH_MAX];
     if (snprintf(full_path, sizeof(full_path), "%s/%s", root_dir, user_path) >= (int)sizeof(full_path)) {
         return 0; // путь слишком длинный
     }
 
-    // Нормализуем путь через realpath (разрешает symlinks, убирает .. и .)
+    // Нормализация пути через realpath (разрешает symlinks, убирает .. и .)
     if (realpath(full_path, resolved) == NULL) {
         return 0; // путь не существует или недоступен
     }
 
-    // Получаем канонический путь к root_dir
+    // Получить канонический путь к root_dir
     char root_real[PATH_MAX];
     if (realpath(root_dir, root_real) == NULL) {
         return 0;
     }
 
-    // Проверяем, что resolved начинается с root_real + '/'
+    // Проверка: resolved начинается с root_real + '/'
     size_t root_len = strlen(root_real);
     if (strncmp(resolved, root_real, root_len) != 0) {
         return 0;
     }
 
-    // Допускаем совпадение (доступ к самой директории)
+    // Допустить совпадение (доступ к самой директории)
     if (resolved[root_len] == '\0') {
         return 1;
     }
@@ -89,6 +89,6 @@ int is_directory(const char *path) {
 long long get_file_size(const char *path) {
     struct stat st;
     if (stat(path, &st) != 0) return -1;
-    if (S_ISDIR(st.st_mode)) return -1; // каталоги не отдаём
+    if (S_ISDIR(st.st_mode)) return -1; // каталоги не отдаются
     return (long long)st.st_size;
 }
