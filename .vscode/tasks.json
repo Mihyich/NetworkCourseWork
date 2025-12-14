@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": 
+    [
+        {
+            "label": "Debug",
+            "type": "shell",
+            "command": "make",
+            "args": 
+            [
+                "app",
+                "BUILD=debug"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Release",
+            "type": "shell",
+            "command": "make",
+            "args": 
+            [
+                "app"
+            ],
+            "group": "build"
+        },
+    ]
+}
