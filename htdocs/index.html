@@ -1,17 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <title>Welcome</title>
-  <style>
-    body { font-family: sans-serif; background: #f9f9f9; }
-    .container { max-width: 600px; margin: 50px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Михаил | GymBar & Calisthenics</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <h1>🎉 HTTP Server Works!</h1>
-    <p>Serving static content since 2025.</p>
-  </div>
+    <div class="container">
+        <header>
+           <div class="profile-img">
+              <img src="resources/images/profile.webp" alt="Grizzly Bear">
+            </div>
+            <h1>Grizzly Bear</h1>
+            <p class="tagline">GymBarr | Calisthenics</p>
+        </header>
+        
+        <section class="about-section">
+            <h2>Обо мне</h2>
+            <div class="about-content">
+                <div>
+                    <p>Сюдазес</p>
+                    <br>
+                    <p>О тьюдазес</p>
+                </div>
+                <div>
+                    <p>Персональный тренер вообще</p>
+                    <br>
+                    <p></p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="interests-section">
+            <h2>Основные направления</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <img src="resources/images/body_fit.jpg" alt="GymBar" class="interest-img">
+                    <div class="interest-content">
+                        <h3>GymBar</h3>
+                        <p>Работа на турнике — основа моих тренировок. Акцент на сложные элементы и их стабильное выполнение.</p>
+                    </div>
+                </div>
+                
+                <div class="interest-card">
+                  <div class="interest-video">
+                      <video
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        poster="resources/images/loading.webp"
+                        preload="auto">
+                        <source src="resources/videos/fornt_lever.mp4" type="video/mp4">
+                      </video>
+                      <div class="video-loader">⏳</div>
+                    </div>
+                  <div class="interest-content">
+                    <h3>Калистеника</h3>
+                    <p>Сила, выносливость и баланс — всё это достигается весом собственного тела. Без «лишнего».</p>
+                  </div>
+                </div>
+                
+                <div class="interest-card">
+                    <img src="resources/images/nivelada.jpg" alt="Гимнастические элементы" class="interest-img">
+                    <div class="interest-content">
+                        <h3>Гимнастические элементы</h3>
+                        <p>Back/front lever, exuadra, nivelada — работа над этими фигурами требует тренировок.</p>
+                    </div>
+                </div>
+                
+                <div class="interest-card">
+                    <div class="interest-video">
+                      <video
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        poster="resources/images/loading.webp"
+                        preload="auto">
+                        <source src="resources/videos/one_arm_divs.mp4" type="video/mp4">
+                      </video>
+                      <div class="video-loader">⏳</div>
+                    </div>
+                    <div class="interest-content">
+                        <h3>Домашние тренировки</h3>
+                        <p>Минималистичный подход: турник, пол, C/C++ и ciggarets. Никаких залов — только дисциплина и прогресс.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Аудио + Визуализатор -->
+        <section class="audio-section">
+          <h2>Сила в ритме</h2>
+          <div class="visualizer-container">
+              <canvas id="visualizer" width="600" height="200"></canvas>
+              
+              <!-- Оверлей для первого взаимодействия -->
+              <div id="sound-trigger" class="sound-trigger">
+                  <span>Нажми, чтобы включить саундтрек</span>
+              </div>
+
+              <div class="audio-controls">
+                  <audio id="music-player" src="resources/audio/SXLLX_-_MAMA_MA_Slowed_(TheMP3.Info).mp3" preload="auto"></audio>
+                  <button id="play-btn" aria-label="Pause" disabled>⏸</button>
+              </div>
+          </div>
+      </section>
+        
+        <footer>
+            <p>&copy; 2025 Grizzly Bear. Все права защищены.</p>
+        </footer>
+    </div>
+
+  <script src="js/visualizer.js" defer></script>
 </body>
 </html>

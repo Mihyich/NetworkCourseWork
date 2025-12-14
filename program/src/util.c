@@ -64,16 +64,30 @@ const char *get_content_type(const char *path) {
 
     const char *ext = dot + 1;
 
+    // HTML / текст
     if (strcasecmp(ext, "html") == 0 || strcasecmp(ext, "htm") == 0)  return "text/html";
     if (strcasecmp(ext, "css")  == 0) return "text/css";
     if (strcasecmp(ext, "js")   == 0) return "application/javascript";
     if (strcasecmp(ext, "json") == 0) return "application/json";
+    if (strcasecmp(ext, "txt")  == 0) return "text/plain";
+
+    // Изображения
     if (strcasecmp(ext, "png")  == 0) return "image/png";
     if (strcasecmp(ext, "jpg")  == 0 || strcasecmp(ext, "jpeg") == 0) return "image/jpeg";
     if (strcasecmp(ext, "gif")  == 0) return "image/gif";
     if (strcasecmp(ext, "ico")  == 0) return "image/x-icon";
-    if (strcasecmp(ext, "txt")  == 0) return "text/plain";
+    if (strcasecmp(ext, "webp") == 0) return "image/webp";  // ← WebP
+
+    // Документы
     if (strcasecmp(ext, "pdf")  == 0) return "application/pdf";
+
+    // Видео
+    if (strcasecmp(ext, "mp4")  == 0) return "video/mp4";
+    if (strcasecmp(ext, "webm") == 0) return "video/webm";
+    if (strcasecmp(ext, "ogg")  == 0 || strcasecmp(ext, "ogv") == 0) return "video/ogg";
+    if (strcasecmp(ext, "avi")  == 0) return "video/x-msvideo";
+    if (strcasecmp(ext, "mov")  == 0) return "video/quicktime";
+    if (strcasecmp(ext, "mkv")  == 0) return "video/x-matroska";
 
     return "application/octet-stream";
 }

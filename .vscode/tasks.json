@@ -8,8 +8,8 @@
             "command": "make",
             "args": 
             [
-                "app.exe",
-                "build=debug"
+                "app",
+                "BUILD=debug"
             ],
             "group": "build"
         },
@@ -19,7 +19,7 @@
             "command": "make",
             "args": 
             [
-                "app.exe"
+                "app"
             ],
             "group": "build"
         },

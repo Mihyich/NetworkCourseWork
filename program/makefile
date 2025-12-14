@@ -60,7 +60,7 @@ all:
 
 app: $(OBJ_FILES) | build_folder
 	$(CC) $(LINKFLAGS) $^ -o $(BUILD_DST_PATH)/app -lpthread
-.PHONY: libla
+.PHONY: app
 
 
 $(OUT_DST_OBJ_PATH)/%.o : $(SRC_PATH)/%.c | out_folder
@@ -94,27 +94,3 @@ clean:
 clean_all:
 	-rm -rf $(OUT_PATH) $(BUILD_PATH)
 .PHONY: clean_all
-
-help:
-	@echo "Usage: 'make [target] [PARAMS=...]'"
-	@echo
-	@echo "Targets:"
-	@echo "  libla                       Build release static library"
-	@echo "    PARAMS:"
-	@echo "      BUILD=release|debug     Choose the build version (default: BUILD=release)"
-	@echo "      LTO=yes|no              turn on supporting LTO   (default: LTO=no)"
-	@echo "    EXAMPLES:"
-	@echo "      make libla"
-	@echo "      make libla BUILD=debug"
-	@echo "      make libla BUILD=release LTO=yes"
-	@echo
-	@echo "  clean              Remove build artifacts for current BUILD: objective files and library"
-	@echo "    PARAMS:"
-	@echo "      BUILD=release|debug     (default: BUILD=release)"
-	@echo "                              Use 'make clean BUILD=debug' to clean debug build"
-	@echo "                              Use 'make clean BUILD=release' to clean release build"
-	@echo
-	@echo "  clean_all          Remove all generated files and folders"
-	@echo
-	@echo "  help               Show this help"
-.PHONY: help

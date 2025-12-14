@@ -17,9 +17,8 @@ struct http_request {
 // Возврат 1 при успехе, 0 - ошибка (неподдерживаемый метод, плохой формат)
 int http_parse_request_line(const char *line, struct http_request *req);
 
-// Отправка HTTP-ответа по сокету
-// is_head: если true - не отправлять тело (только заголовки)
-// Возврат: 0 при успехе, -1 - ошибка отправки
-int http_send_response(int client_fd, const char *docroot, struct http_request *req, int is_head);
+int http_prepare_response(const char *docroot, struct http_request *req, char *resolved_path, long long *file_size, const char **content_type);
+
+void send_simple_response(int fd, int status_code, const char *status_text);
 
 #endif // HTTP_H

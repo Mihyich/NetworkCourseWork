@@ -6,7 +6,7 @@
             "name": "Debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/app.exe",
+            "program": "${workspaceFolder}/app",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -20,7 +20,7 @@
                 "ignoreFailures": true
             }
             ],
-            "preLaunchTask": "Debug"
+            // "preLaunchTask": "Debug"
         },
         {
             "name": "Release",
