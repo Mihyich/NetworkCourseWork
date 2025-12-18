@@ -51,9 +51,10 @@ $16, 50, 100, 200, 500, 1000$.
 	\text{ulimit -n 4096}.
 \end{equation*}
 
-Полученные результаты записаны в таблицах~\ref{tab:ex1}~--~\ref{tab:ex2}. На графике~\ref{graph:ex1} изображена
-зависимость пропускной способности сервера от числа одновременных соединений при тестовом сценарии с легковесным
-файлом (\textit{index.html}).
+Полученные результаты записаны в таблицах~\ref{tab:ex1}~--~\ref{tab:ex2}. На графиках~\ref{graph:throughput_vs_connections}~-~
+\ref{graph:latency_vs_connections} представлены зависимости количества обрабатываемых запросов в секунду,
+совокупного объема переданных данных, средней задержки сервера от числа одновременных соединений при тестовом сценарии с легковесным
+файлом (\textit{index.html}) соответственно.
 
 \begin{sidewaystable}
 \centering
@@ -167,9 +168,27 @@ $16, 50, 100, 200, 500, 1000$.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{data/test1/throughput_vs_connections.pdf}
-    \caption{Зависимость пропускной способности сервера от числа одновременных соединений при отдаче index.html}
-    \label{graph:ex1}
+    \includegraphics[width=0.9295\textwidth]{data/test1/throughput_vs_connections.pdf}
+    \caption{Зависимость количества обрабатываемых запросов в секунду от числа одновременных соединений при отдаче index.html}
+    \label{graph:throughput_vs_connections}
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9295\textwidth]{data/test1/transfer_connections.pdf}
+    \caption{Зависимость совокупного объема переданных данных от числа одновременных соединений при отдаче index.html}
+    \label{graph:transfer_connections}
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9295\textwidth]{data/test1/latency_connections.pdf}
+    \caption{Зависимость средней задержки сервера от числа одновременных соединений при отдаче index.html}
+    \label{graph:latency_vs_connections}
 \end{figure}
 
 \FloatBarrier
@@ -217,6 +236,32 @@ $16, 50, 100, 200, 500, 1000$.
 
 \FloatBarrier
 
+На рисунке~\ref{graph:one_conn} представлен график зависимости пропускной способности (Мб/с) сервера
+от номера запуска команды \textit{curl}, а также изображена средняя пропускная способность сервера при отдаче
+файла объемом 100 Мб по одному сетевому соединению.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{data/test2/one_conn.pdf}
+    \caption{Зависимость пропускной способности сервера от номера запуска команды \textit{curl} при передаче 100 МБ по одному сетевому соединению}
+    \label{graph:one_conn}
+\end{figure}
+
+\FloatBarrier
+
+На рисунке~\ref{graph:one_conn_time} представлен график зависимости времени выполнения команды \textit{curl} (мс)
+от номера ее запуска, а также изображено среднее время выполнения этой команды при отдаче
+файла объемом 100 Мб по одному сетевому соединению.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{data/test2/one_conn_time.pdf}
+    \caption{Зависимость времени выполнения команды \textit{curl} от номера ее запуска при передаче 100 МБ по одному сетевому соединению}
+    \label{graph:one_conn_time}
+\end{figure}
+
+\FloatBarrier
+
 Для тестирования отдачи данных по нескольким параллельным сетевым соединениям сервер также
 был запущен с оптимальным количеством рабочих поток в пуле (8), а для создания параллельных
 соединений использовался \textit{bash}-скрипт~\ref{lst:data/test2/test.sh}~\cite{bash}.
@@ -258,9 +303,10 @@ $16, 50, 100, 200, 500, 1000$.
 
 \FloatBarrier
 
-По полученным данным были построены графики зависимости средней скорости отдачи данных на соединение
-от количества сетевых соединений и совокупной пропускной способности сервера от количества сетевых
-соединений (рисунки~\ref{graph:ex2}~--~\ref{graph:ex3}).
+По полученным данным были построены графики зависимости средней скорости отдачи данных на соединение,
+совокупной пропускной способности сервера и времени передачи от количества сетевых
+соединений при отдаче файла объемом 100 Мб по нескольким параллельным сетевым соединениям
+соответственно (рисунки~\ref{graph:ex2}~--~\ref{graph:time_power}).
 
 \begin{figure}[h]
     \centering
@@ -276,6 +322,15 @@ $16, 50, 100, 200, 500, 1000$.
     \includegraphics[width=\textwidth]{data/test2/aver_power.pdf}
     \caption{Зависимость совокупной пропускной способности сервера от количества сетевых соединений}
     \label{graph:ex3}
+\end{figure}
+
+\FloatBarrier
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{data/test2/time_power.pdf}
+    \caption{Зависимость времени передачи от количества сетевых соединений}
+    \label{graph:time_power}
 \end{figure}
 
 \FloatBarrier

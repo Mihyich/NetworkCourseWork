@@ -37,4 +37,36 @@ plt.ylabel('Количество обрабатываемых запросов �
 plt.legend()
 plt.grid(True)
 plt.xscale('log')  # полезно, так как connections растут экспоненциально
+plt.subplots_adjust(left=0.09, bottom=0.09, right=0.95, top=0.95)
+plt.show()
+
+# === График 2: Latency vs connections (по threads) ===
+plt.figure(figsize=(10, 6))
+for thread_count in sorted(df['threads'].unique()):
+    subset = df[df['threads'] == thread_count]
+    plt.plot(subset['connections'], subset['latency_ms'], marker='o',
+             label=f'Потоков: {thread_count}')
+
+plt.xlabel('Количество сетевых соединений')
+plt.ylabel('Средняя задержка, мс')
+plt.legend()
+plt.grid(True)
+plt.xscale('log')
+# plt.title('Задержка vs Соединения')
+plt.subplots_adjust(left=0.09, bottom=0.09, right=0.95, top=0.95)
+plt.show()
+
+# === График 2: Latency vs connections (по threads) ===
+plt.figure(figsize=(10, 6))
+for thread_count in sorted(df['threads'].unique()):
+    subset = df[df['threads'] == thread_count]
+    plt.plot(subset['connections'], subset['Transfer/sec, MB'], marker='o', label=f'Количество рабочих потоков в пуле: {thread_count}')
+
+plt.xlabel('Количество сетевых соединений')
+plt.ylabel('Совокупный объем отдачи, Мб')
+plt.legend()
+plt.grid(True)
+plt.xscale('log')
+# plt.title('Задержка vs Соединения')
+plt.subplots_adjust(left=0.09, bottom=0.09, right=0.95, top=0.95)
 plt.show()
