@@ -1,0 +1,50 @@
+% Настройка листингов
+\RequirePackage{listings}
+\RequirePackage{listingsutf8}
+\lstset{
+	inputencoding=utf8/koi8-r,
+	basicstyle=\small\ttfamily,
+	rulecolor=\color{black},
+	escapeinside={\%*}{*)},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	showstringspaces=false,
+	float=h!,
+	abovecaptionskip=-5pt,
+	numbers=left,
+	stepnumber=1,
+	numbersep=7pt,
+	frame=leftline
+}
+
+% Команда создания простого листинга
+\newcommand{\includelisting}[2]
+{
+	\lstinputlisting[
+		frame=single,
+		caption={#2},
+		label={lst:#1},
+	]{#1}
+}
+
+\definecolor{numbers}{rgb}{0.5, 0.5, 0.5}
+\definecolor{keywords}{rgb}{0.13, 0.13, 1}
+\definecolor{comments}{rgb}{0, 0.5, 0}
+\definecolor{strings}{rgb}{0.9, 0, 0}
+
+% Команда создания листинга с подсветкой синтаксиса и нумерацией строк
+\newcommand{\includelistingpretty}[3]
+{
+	\lstinputlisting[
+		language={#2},
+		keywordstyle=\color{keywords},
+		stringstyle=\color{strings},
+		commentstyle=\color{comments},
+		frame=leftline,
+		numbers=left,
+		numberstyle=\footnotesize\color{numbers},
+		caption={#3},
+		label={lst:#1},
+	]{inc/lst/#1}
+}
