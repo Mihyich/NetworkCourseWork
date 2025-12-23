@@ -1,0 +1,134 @@
+<mxfile host="65bd71144e">
+    <diagram id="Xy1gu2UyTiSycO4VRs5Z" name="Page-1">
+        <mxGraphModel dx="465" dy="2068" grid="1" gridSize="12" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="319" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=8;endArrow=none;endFill=0;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="133" target="242" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150.02325581395354" y="-626" as="targetPoint"/>
+                        <mxPoint x="90" y="-808" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="36" y="-804"/>
+                            <mxPoint x="36" y="-456"/>
+                            <mxPoint x="150" y="-456"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="322" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=8;endArrow=none;endFill=0;" parent="1" source="133" target="321" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="252" y="-804"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="329" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Да&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;" parent="322" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2963" y="1" relative="1" as="geometry">
+                        <mxPoint x="-3" y="-11" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="133" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Если тип графа = город&amp;nbsp;&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="-840" width="120" height="72" as="geometry"/>
+                </mxCell>
+                <mxCell id="148" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="150" target="153" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="149" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;dashed=1;" parent="1" source="150" target="154" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="150" value="Начало" style="rounded=1;whiteSpace=wrap;html=1;arcSize=48;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="-1149" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="156" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" parent="1" source="153" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150" y="-989" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="153" value="Мин. путь = inf" style="rounded=0;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="-1069" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="154" value="Алгоритм полного перебора&lt;br&gt;Вход: ориентированный граф&amp;nbsp;&lt;br&gt;Выход: наикратчайший маршрут" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.annotation_1;align=left;pointerEvents=1;" parent="1" vertex="1">
+                    <mxGeometry x="274" y="-1150" width="16" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="159" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" target="133" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="150" y="-849" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="185" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;endFill=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="290" y="-419" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="242" value="Конец" style="rounded=1;whiteSpace=wrap;html=1;arcSize=48;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="-444" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="316" value="Обход дуг текущей вершины" style="shape=loopLimit;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="-910" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="318" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" parent="1" source="317" target="316" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="317" value="Посетить начальную вершину графа" style="rounded=0;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="-990" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="325" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=8;endArrow=none;endFill=0;" parent="1" source="321" target="324" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="321" value="Посетить новую вершину" style="rounded=0;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="192" y="-774" width="120" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="327" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=8;endArrow=none;endFill=0;" parent="1" source="324" target="326" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="324" value="Посетить новую вершину" style="rounded=0;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="192" y="-708" width="120" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="330" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;endArrow=none;endFill=0;" parent="1" source="326" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="144" y="-576" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="333" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=11;endArrow=none;endFill=0;" parent="1" source="326" target="332" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="354" y="-620"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="338" value="Да" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;" parent="333" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2967" y="2" relative="1" as="geometry">
+                        <mxPoint x="-4" y="-11" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="326" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Ести&lt;br&gt;достигнута точка назначения&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="192" y="-652" width="120" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="334" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;endArrow=none;endFill=0;" parent="1" source="331" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="252" y="-480" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="150" y="-492"/>
+                            <mxPoint x="252" y="-492"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="331" value="Вернуться в предыдущую вершину" style="rounded=0;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="-576" width="120" height="48" as="geometry"/>
+                </mxCell>
+                <mxCell id="335" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;endArrow=none;endFill=0;" parent="1" source="332" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="144" y="-456" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="354" y="-492"/>
+                            <mxPoint x="252" y="-492"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="332" value="Обновить наикратчайший маршрут" style="rounded=0;whiteSpace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="294" y="-576" width="120" height="48" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
